@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>create a blog with hexo | Chyoo&#39;s Blog</title>
+    <title>Create a blog with hexo | Chyoo&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="chyoo ubear">
@@ -75,7 +75,7 @@ How To Install Node.js on an Ubuntu 14.04">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/26/create-a-blog-with-hexo/" title="create a blog with hexo" itemprop="url">create a blog with hexo</a>
+      <a href="/2014/10/26/create-a-blog-with-hexo/" title="Create a blog with hexo" itemprop="url">Create a blog with hexo</a>
   </h1>
   <p class="article-author">By
     
@@ -83,7 +83,7 @@ How To Install Node.js on an Ubuntu 14.04">
     </p>
   <p class="article-time">
     <time datetime="2014-10-26T14:02:11.000Z" itemprop="datePublished">10月 26 2014</time>
-    更新日期:<time datetime="2014-10-26T14:09:16.000Z" itemprop="dateModified">10月 26 2014</time>
+    更新日期:<time datetime="2014-10-27T15:45:06.000Z" itemprop="dateModified">10月 27 2014</time>
     
   </p>
 </header>
@@ -127,24 +127,24 @@ How To Install Node.js on an Ubuntu 14.04">
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> -g hexo</span></div></pre></td></tr></table></figure>
 
 <blockquote>
-<p>但是我的却出现这样的问题：<br><img src="./1414202577510.png" alt="Alt text"><br>很显然是在mkdir时，权限不够，果断sudo操作上面的语句。成功了之后会是这么样子：<br><img src="./2014-10-25 10:07:50 的屏幕截图.png" alt="Alt text"></p>
+<p>但是我的却出现这样的问题：<br><img src="http://chyoo.qiniudn.com/hexoubuntu-error1.png" alt="Alt text"><br>很显然是在mkdir时，权限不够，果断sudo操作上面的语句。成功了之后会是这么样子：<br><img src="http://chyoo.qiniudn.com/hexoubuntu-error2.png" alt="Alt text"></p>
 </blockquote>
 <h4 id="初始化hexo">初始化hexo</h4>
 <hr>
 <blockquote>
-<p>安装完成之后，要初始化hexo。创建一个专门用来写博客的文件夹。我在主目录下创建了blog文件夹，然后cd到blog文件夹中。<br>      <img src="./2014-10-25 10:15:17 的屏幕截图.png" alt="Alt text"></p>
+<p>安装完成之后，要初始化hexo。创建一个专门用来写博客的文件夹。我在主目录下创建了blog文件夹，然后cd到blog文件夹中。<br>      <img src="http://chyoo.qiniudn.com/hexoubuntu-error3.png" alt="Alt text"></p>
 </blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">init</span></div><div class="line">npm  install</div></pre></td></tr></table></figure>
 
 <blockquote>
-<p>第一个句子进行初始化，第二个安装相关依赖。但是我在这儿遇到一个大的问题。如下：<br><img src="./1414204376314.png" alt="Alt text"></p>
+<p>第一个句子进行初始化，第二个安装相关依赖。但是我在这儿遇到一个大的问题。如下：<br><img src="http://chyoo.qiniudn.com/hexoubuntu-error4.png" alt="Alt text"></p>
 <ul>
-<li>开始以为是hexo没有加入环境变量中。于是用<code>whereis hexo</code> 找到其对应的地址，然后加入到<code>.bashrc</code>中，并<code>echo $PATH</code>查看是否添加成功。结果是添加成功，但是呢，再次键入<code>hexo init</code>还是会出现同样的显示，看来并没有解决问题。google了一下，<a href="https://github.com/joyent/node/issues/3911" target="_blank" rel="external">在此</a>找到关键解释。<br><img src="./1414204586634.png" alt="Alt text"><br>意思是说如果用包管理器安装的话，二进制文件被叫做nodejs，但是hexo用的是<code>node</code>，于是用一个软链接解决这个问题：<code>ln -s /usr/bin/nodejs /usr/bin/node</code>。</li>
+<li>开始以为是hexo没有加入环境变量中。于是用<code>whereis hexo</code> 找到其对应的地址，然后加入到<code>.bashrc</code>中，并<code>echo $PATH</code>查看是否添加成功。结果是添加成功，但是呢，再次键入<code>hexo init</code>还是会出现同样的显示，看来并没有解决问题。google了一下，<a href="https://github.com/joyent/node/issues/3911" target="_blank" rel="external">在此</a>找到关键解释。<br><img src="http://chyoo.qiniudn.com/hexoubuntu-error5.png" alt="Alt text"><br>意思是说如果用包管理器安装的话，二进制文件被叫做nodejs，但是hexo用的是<code>node</code>，于是用一个软链接解决这个问题：<code>ln -s /usr/bin/nodejs /usr/bin/node</code>。</li>
 </ul>
 </blockquote>
 <hr>
 <blockquote>
-<p>问题解决了，然后安装好依赖，即<code>npm install</code>。blog文件夹下生成如下文件：<br><img src="./1414204960366.png" alt="Alt text"><br>表示这一步已经完成。</p>
+<p>问题解决了，然后安装好依赖，即<code>npm install</code>。blog文件夹下生成如下文件：<br><img src="http://chyoo.qiniudn.com/hexoubuntu-error6.png" alt="Alt text"><br>表示这一步已经完成。</p>
 </blockquote>
 <hr>
 <h4 id="本地测试">本地测试</h4>
@@ -154,7 +154,7 @@ How To Install Node.js on an Ubuntu 14.04">
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo <span class="keyword">server</span></div></pre></td></tr></table></figure>
 
 <blockquote>
-<p>然后到浏览器输入 <code>localhost:4000</code>即可查看本地页面。结果就是这么各样子的：<br><img src="./1414205177483.png" alt="Alt text"><br>hexo 支持更简单的命令形式，总结一下：</p>
+<p>然后到浏览器输入 <code>localhost:4000</code>即可查看本地页面。结果就是这么各样子的：<br><img src="http://chyoo.qiniudn.com/hexoubuntu-error7.png" alt="Alt text"><br>hexo 支持更简单的命令形式，总结一下：</p>
 </blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo <span class="variable">g =</span> hexo generate</div><div class="line">hexo <span class="variable">s =</span> hexo server</div><div class="line">hexo <span class="variable">d =</span> hexo deploy //部署</div><div class="line">hexo <span class="variable">n =</span> hexo new //写新的文章</div></pre></td></tr></table></figure>
 
@@ -165,8 +165,8 @@ How To Install Node.js on an Ubuntu 14.04">
 </blockquote>
 <hr>
 <blockquote>
-<p>在blog下有一个<code>_config.yml</code>文件，需要修改里面的一些东西，配置好部署条件。打开就大概 是这么个样子：<br><img src="./1414206030466.png" alt="Alt text"></p>
-<p>里面有很多具体的配置选项，以后再研究，现在重要的是配置部署的部分。<br><img src="./1414206235234.png" alt="Alt text"></p>
+<p>在blog下有一个<code>_config.yml</code>文件，需要修改里面的一些东西，配置好部署条件。打开就大概 是这么个样子：<br><img src="http://chyoo.qiniudn.com/hexoubuntu-error8.png" alt="Alt text"></p>
+<p>里面有很多具体的配置选项，以后再研究，现在重要的是配置部署的部分。<br><img src="http://chyoo.qiniudn.com/hexoubuntu-error9.png" alt="Alt text"></p>
 <p>部署在该文件结尾部分。主要配置好这三项。使用以下命令完成部署：</p>
 </blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">hexo</span> g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
@@ -190,7 +190,7 @@ How To Install Node.js on an Ubuntu 14.04">
 
 <div class="article-share" id="share">
 
-  <div data-url="http://chyoo.me/2014/10/26/create-a-blog-with-hexo/" data-title="create a blog with hexo | Chyoo&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://chyoo.me/2014/10/26/create-a-blog-with-hexo/" data-title="Create a blog with hexo | Chyoo&#39;s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>

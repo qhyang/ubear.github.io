@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>露大腿网的爬虫 | chyoo&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在hexo搭建博客时，发现一个网站，上面给了写的一个叫做露大腿网站的爬虫，我研究了下代码。哈哈，屌丝有福了，都是美腿的妹纸。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="露大腿网的爬虫">
+<meta property="og:url" content="http://chyoo.me/2014/10/14/ludatui-python/">
+<meta property="og:site_name" content="chyoo's blog">
+<meta property="og:description" content="在hexo搭建博客时，发现一个网站，上面给了写的一个叫做露大腿网站的爬虫，我研究了下代码。哈哈，屌丝有福了，都是美腿的妹纸。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="露大腿网的爬虫">
+<meta name="twitter:description" content="在hexo搭建博客时，发现一个网站，上面给了写的一个叫做露大腿网站的爬虫，我研究了下代码。哈哈，屌丝有福了，都是美腿的妹纸。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="chyoo&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://chyoo.qiniudn.com/blogmyGirl.jpg">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">chyoo</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Time goes by but I can not find you.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/DS/" style="font-size: 10.00px;">DS</a><a href="/tags/K/" style="font-size: 10.00px;">K</a><a href="/tags/Machine-Learn/" style="font-size: 10.00px;">Machine Learn</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/campus-network/" style="font-size: 10.00px;">campus network</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/java/" style="font-size: 13.33px;">java</a><a href="/tags/key/" style="font-size: 10.00px;">key</a><a href="/tags/leetcode/" style="font-size: 13.33px;">leetcode</a><a href="/tags/login/" style="font-size: 16.67px;">login</a><a href="/tags/picture/" style="font-size: 10.00px;">picture</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/ubuntu-14-04/" style="font-size: 10.00px;">ubuntu 14.04</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					A graduate student in Beijing Institute of  Technology.
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://chyoo.qiniudn.com/blogmyGirl.jpg">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">chyoo</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Time goes by but I can not find you.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-ludatui-python" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/14/ludatui-python/" class="article-date">
+  	<time datetime="2014-10-14T11:37:03.000Z" itemprop="datePublished">10月 14 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DS/">DS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/picture/">picture</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      露大腿网的爬虫
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在hexo搭建博客时，发现一个网站，上面给了写的一个叫做<a href="http://loudatui.com/" target="_blank" rel="external">露大腿</a>网站的爬虫，我研究了下代码。哈哈，屌丝有福了，都是美腿的妹纸。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib2,urllib</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="comment">#import sys</span></div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"></div><div class="line">pages = <span class="number">1</span></div><div class="line">today = datetime.date.today().isoformat()</div><div class="line"></div><div class="line">s = os.sep</div><div class="line">root = <span class="string">"d:"</span>+s+<span class="string">"ludatui"</span>+s</div><div class="line"><span class="keyword">if</span> <span class="keyword">False</span> == os.path.exists(root):</div><div class="line">    os.mkdir(root)</div><div class="line">    </div><div class="line">prefix = <span class="string">'http://loudatui.com/?page='</span></div><div class="line">pat = <span class="string">r'&lt;img alt="Small" class="img" src="(.*?)small'</span></div><div class="line"><span class="comment">#实际上只匹配中间的部分就是src="(.*?)"这部分</span></div><div class="line">pattern = re.compile(pat)</div><div class="line">replace = <span class="string">'large'</span><span class="comment">#换成大的，主界面抓取的都是小的，也可以用middle</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dlitem</span><span class="params">(url,i,k)</span>:</span></div><div class="line">    fname = today+<span class="string">'-'</span>+str(i)+<span class="string">'-'</span>+str(k+<span class="number">1</span>)+<span class="string">'.jpg'</span><span class="comment">#i指的是页数，k+1是该页对应的第某个图片</span></div><div class="line">    urllib.urlretrieve(url,os.path.join(root,fname))</div><div class="line">    <span class="comment">#print os.path.join(root,fname)</span></div><div class="line">    </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dlpage</span><span class="params">(i)</span>:</span></div><div class="line">    page = urllib2.urlopen(prefix+str(i)).read()</div><div class="line">    items = pattern.findall(page)</div><div class="line">    <span class="comment">#print items</span></div><div class="line">    targets=[item+replace <span class="keyword">for</span> item <span class="keyword">in</span> items]</div><div class="line">    <span class="comment">#print targets</span></div><div class="line">    tasks = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(len(targets)):</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            t = threading.Thread(target=dlitem,args=(targets[k],i,k))</div><div class="line">            tasks.append(t)</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'some error in %sth download'</span> % k</div><div class="line">            <span class="keyword">continue</span></div><div class="line">    <span class="keyword">for</span> task <span class="keyword">in</span> tasks:</div><div class="line">        task.start()</div><div class="line">     </div><div class="line">    <span class="keyword">for</span> task <span class="keyword">in</span> tasks:</div><div class="line">        task.join(<span class="number">300</span>)</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(pages):</div><div class="line">    <span class="keyword">print</span> <span class="string">'Now page %s'</span> % str(n+<span class="number">1</span>)</div><div class="line">    dlpage(n+<span class="number">1</span>)</div><div class="line">    <span class="keyword">print</span> <span class="string">'Page %s OK\n'</span> % str(n+<span class="number">1</span>)</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 我想，写这个代码对的作者一定Very认真研究过Html页面的源码，因为很多细节我是看了他的代码之后才发现Html中的对应细节。</p>
+</blockquote>
+<hr>
+<h4 id="代码特点">代码特点</h4>
+<hr>
+<blockquote>
+<ul>
+<li>多线程</li>
+<li>re 库—-正则匹配</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>值得注意的是三个特点：</p>
+<ul>
+<li><code>targets=[item+replace for item in items]</code> 这是python特有的列表生成方式</li>
+<li><code>urllib.urlretrieve(url,str)</code> 的使用方式是将url下载到本地str文件中。</li>
+<li>关于多线程的使用，主要是join方法不太好理解。但是在一篇博客上找到了比较好理解的一种方式，如下。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>join方法，如果一个线程或者一个函数在执行过程中要调用另外一个线程，并且待到其完成以后才能接着执行，那么在调用这个线程时可以使用被调用线程的join方法。</strong></p>
+<p>即，使得主调线程阻塞。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>在这个程序中，task.start()是主进程调用的，各个子线程它们同时开始运行。主进程然后调用挨个调用对应线程的join()方法，其实就是等待该子线程执行。如果join()方法没有参数，则等该线程结束，才开始执行下一个线程的join()方法。如果有参数s，则等待s秒。执行下一个线程的join方法。join方法的作用是阻挡主进程。只有所有线程的join方法都退出了，才能返回到主进程执行。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>它的主要目的就是阻挡主进程的执行。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/10/23/generating-ssh-keys/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Generating SSH keys
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/25/the-big-substring/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">最大子串 和/乘 积问题</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ludatui-python" data-title="露大腿网的爬虫" data-url="http://chyoo.me/2014/10/14/ludatui-python/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 chyoo
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

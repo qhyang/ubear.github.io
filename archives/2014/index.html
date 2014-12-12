@@ -108,7 +108,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/K/" style="font-size: 10.00px;">K</a><a href="/tags/Machine-Learn/" style="font-size: 10.00px;">Machine Learn</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/campus-network/" style="font-size: 10.00px;">campus network</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/login/" style="font-size: 20.00px;">login</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/ubuntu-14-04/" style="font-size: 10.00px;">ubuntu 14.04</a>
+						<a href="/tags/DS/" style="font-size: 10.00px;">DS</a><a href="/tags/K/" style="font-size: 10.00px;">K</a><a href="/tags/Machine-Learn/" style="font-size: 10.00px;">Machine Learn</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/campus-network/" style="font-size: 10.00px;">campus network</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/java/" style="font-size: 13.33px;">java</a><a href="/tags/key/" style="font-size: 10.00px;">key</a><a href="/tags/leetcode/" style="font-size: 13.33px;">leetcode</a><a href="/tags/login/" style="font-size: 16.67px;">login</a><a href="/tags/picture/" style="font-size: 10.00px;">picture</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/ubuntu-14-04/" style="font-size: 10.00px;">ubuntu 14.04</a>
 					</div>
 				</section>
 				
@@ -386,6 +386,60 @@
 
 
   
+    <article id="post-binary-search-advanced" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/02/binary-search-advanced/" class="article-date">
+  	<time datetime="2014-11-02T11:56:42.000Z" itemprop="datePublished">11月 2 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/02/binary-search-advanced/">二分查找在旋转数组中的应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>题见此处 <a href="https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="external">Find Minimum in Rotated Sorted Array </a>，跟上次那个单链表环的问题的出题模式有些相似，第一题考基本的，第二题考特殊情况。单链表那题第一个先判断链表是否有环，第二个如果有环的话，找出环的入口。这个找旋转数组中的最小值，第一题考虑旋转数组中没有重复时的情况，第二个复杂了点，考虑有重复的情况。</p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/2014/11/02/binary-search-advanced/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-create-a-blog-with-hexo" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -422,6 +476,169 @@
         
           <p class="article-more-link">
             <a href="/2014/10/26/create-a-blog-with-hexo/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-generating-ssh-keys" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/23/generating-ssh-keys/" class="article-date">
+  	<time datetime="2014-10-23T11:46:21.000Z" itemprop="datePublished">10月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/key/">key</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/23/generating-ssh-keys/">Generating SSH keys</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<blockquote>
+<p>github 提供多种访问方式，有https和ssh等。在Linux下使用git时，咱们还是喜欢用ssh方式。ssh的原理是通过使用公玥和私玥来处理加密的问题。据说是防范中间人攻击，等我有时间了再具体了解下。</p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/2014/10/23/generating-ssh-keys/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ludatui-python" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/14/ludatui-python/" class="article-date">
+  	<time datetime="2014-10-14T11:37:03.000Z" itemprop="datePublished">10月 14 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DS/">DS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/picture/">picture</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/14/ludatui-python/">露大腿网的爬虫</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在hexo搭建博客时，发现一个网站，上面给了写的一个叫做<a href="http://loudatui.com/" target="_blank" rel="external">露大腿</a>网站的爬虫，我研究了下代码。哈哈，屌丝有福了，都是美腿的妹纸。</p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/2014/10/14/ludatui-python/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-the-big-substring" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/25/the-big-substring/" class="article-date">
+  	<time datetime="2014-09-25T12:02:34.000Z" itemprop="datePublished">9月 25 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/25/the-big-substring/">最大子串 和/乘 积问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>首先要申明的是概念问题，即：<strong>子串和子序列</strong> 。</p>
+</blockquote>
+<p>
+        
+          <p class="article-more-link">
+            <a href="/2014/09/25/the-big-substring/#more">more >></a>
           </p>
         
       

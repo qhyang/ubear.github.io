@@ -110,7 +110,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/K/" style="font-size: 10.00px;">K</a><a href="/tags/Machine-Learn/" style="font-size: 10.00px;">Machine Learn</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/campus-network/" style="font-size: 10.00px;">campus network</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/login/" style="font-size: 20.00px;">login</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/ubuntu-14-04/" style="font-size: 10.00px;">ubuntu 14.04</a>
+						<a href="/tags/DS/" style="font-size: 10.00px;">DS</a><a href="/tags/K/" style="font-size: 10.00px;">K</a><a href="/tags/Machine-Learn/" style="font-size: 10.00px;">Machine Learn</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/campus-network/" style="font-size: 10.00px;">campus network</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/java/" style="font-size: 13.33px;">java</a><a href="/tags/key/" style="font-size: 10.00px;">key</a><a href="/tags/leetcode/" style="font-size: 13.33px;">leetcode</a><a href="/tags/login/" style="font-size: 16.67px;">login</a><a href="/tags/picture/" style="font-size: 10.00px;">picture</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/ubuntu-14-04/" style="font-size: 10.00px;">ubuntu 14.04</a>
 					</div>
 				</section>
 				
@@ -220,9 +220,13 @@
 <hr>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">task = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):</div><div class="line">    task.append(threading.Thread(target=trylogin, args=(i,)))</div><div class="line">    task[i].start()</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):</div><div class="line">    task[i].join()</div><div class="line">...</div></pre></td></tr></table></figure>
 
+<hr>
 <h4 id="结果">结果</h4>
+<hr>
 <p><img src="http://chyoo.qiniudn.com/python-python-bit-login2.png" alt="Alt text"></p>
+<hr>
 <h4 id="总结语法">总结语法</h4>
+<hr>
 <blockquote>
 <p>平时用的Python不多。导致基本语法都快忘光了。在写这个代码片段时，遇到一些语法问题，现在总结如下：</p>
 <ul>
@@ -234,6 +238,7 @@
 </blockquote>
 <hr>
 <h4 id="线程总结">线程总结</h4>
+<hr>
 <blockquote>
 <p>这个里面用的是python中线程的函数方式。还有一种是继承<code>thread.Thread</code>类，重写<code>run</code>方法。不过对python的类不是很熟悉，就采用了函数的方法。采用函数方式，过程是：</p>
 <ul>

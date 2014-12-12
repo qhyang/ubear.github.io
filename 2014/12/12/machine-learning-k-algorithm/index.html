@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Machine Learning 之 K-近邻算法(1) | chyoo&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近开始进入ML的节奏。首先学习了k-近邻算法，也是最简单的一种。K-近邻算法是分类算法的一种，对于给定的测试数据，通过样本数据集，能够输出测试数据的类型。样本数据集给出了数据的特征和对应的类型，而测试数据只有数据的特征值。本文给出一个K-近邻算法的Python的简单实现，并在后续序列文章中，给出将这种算法应用到具体项目中的实现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning 之 K-近邻算法(1)">
+<meta property="og:url" content="http://chyoo.me/2014/12/12/machine-learning-k-algorithm/">
+<meta property="og:site_name" content="chyoo's blog">
+<meta property="og:description" content="最近开始进入ML的节奏。首先学习了k-近邻算法，也是最简单的一种。K-近邻算法是分类算法的一种，对于给定的测试数据，通过样本数据集，能够输出测试数据的类型。样本数据集给出了数据的特征和对应的类型，而测试数据只有数据的特征值。本文给出一个K-近邻算法的Python的简单实现，并在后续序列文章中，给出将这种算法应用到具体项目中的实现。">
+<meta property="og:image" content="http://chyoo.qiniudn.com/pythonmlk01.png">
+<meta property="og:image" content="http://chyoo.qiniudn.com/pythonvectorDIS.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Machine Learning 之 K-近邻算法(1)">
+<meta name="twitter:description" content="最近开始进入ML的节奏。首先学习了k-近邻算法，也是最简单的一种。K-近邻算法是分类算法的一种，对于给定的测试数据，通过样本数据集，能够输出测试数据的类型。样本数据集给出了数据的特征和对应的类型，而测试数据只有数据的特征值。本文给出一个K-近邻算法的Python的简单实现，并在后续序列文章中，给出将这种算法应用到具体项目中的实现。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="chyoo&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://chyoo.qiniudn.com/blogmyGirl.jpg">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">chyoo</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Time goes by but I can not find you.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/K/" style="font-size: 10.00px;">K</a><a href="/tags/Machine-Learn/" style="font-size: 10.00px;">Machine Learn</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/campus-network/" style="font-size: 10.00px;">campus network</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/login/" style="font-size: 20.00px;">login</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/ubuntu-14-04/" style="font-size: 10.00px;">ubuntu 14.04</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					A graduate student in Beijing Institute of  Technology.
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://chyoo.qiniudn.com/blogmyGirl.jpg">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">chyoo</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Time goes by but I can not find you.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-machine-learning-k-algorithm" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/12/machine-learning-k-algorithm/" class="article-date">
+  	<time datetime="2014-12-12T09:25:27.000Z" itemprop="datePublished">12月 12 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/K/">K</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learn/">Machine Learn</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Machine Learning 之 K-近邻算法(1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近开始进入ML的节奏。首先学习了k-近邻算法，也是最简单的一种。K-近邻算法是分类算法的一种，对于给定的测试数据，通过样本数据集，能够输出测试数据的类型。样本数据集给出了<strong>数据的特征</strong>和<strong>对应的类型</strong>，而测试数据只有<strong>数据的特征值</strong>。本文给出一个K-近邻算法的Python的简单实现，并在后续序列文章中，给出将这种算法应用到具体项目中的实现。</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<h4 id="算法原理">算法原理</h4>
+<hr>
+<blockquote>
+<p>首先给出一个具体的样本数据集，让我们好有一个具体和直观的印象。</p>
+</blockquote>
+<p><img src="http://chyoo.qiniudn.com/pythonmlk01.png" alt="Alt text"></p>
+<blockquote>
+<p>上面的图里，给出了数据的特征值和分类。特征值有两个维度，即电影的打斗镜头和接吻镜头，分类是电影的类型。前面几行都是样本数据，最后一行给出了一个测试数据，给了相关的特征值，需要用算法给出其分类：是爱情片还是动作片？</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>那么K-近邻算法是怎么处理这个问题的呢？它的做法是：</p>
+<ul>
+<li>对于一个输入的测试数据，计算其跟样本中的每一个数据的<strong>距离</strong></li>
+<li>对于上一步已经算出距离的样本数据，按照距离<strong>从小到大</strong>排序</li>
+<li>已经排好序中的数据，选取<strong>前K个</strong>样本数据</li>
+<li>在这K个样本数据中，<strong>类型数最多</strong>的那个就是测试数据的类型</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>看起来很容易理解，跟测试数据距离近的样本数据的分类，很可能就代表测试数据的分类了。这里面关键的一点是测试数据和样本数据的距离计算。一般使用的是向量的距离公式。</p>
+</blockquote>
+<p>  <img src="http://chyoo.qiniudn.com/pythonvectorDIS.png" alt="Alt text"></p>
+<blockquote>
+<p>非常简单。前几天不小心看到知乎上的一个关于推荐算法的实现，简单纯粹得让人感觉无语，也就是多维向量的余弦，那个公式相当好理解，这个也是。因为简单易懂，就不解释。现在问题是如何实现第一个图片里面的那个测试数据的输出。</p>
+</blockquote>
+<hr>
+<h4 id="算法实现">算法实现</h4>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">"""</span></div><div class="line">Created on Fri Dec 12 10:08:46 2014</div><div class="line"></div><div class="line">@author: chyoo</div><div class="line">"""</div><div class="line"></div><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="comment">#import operator</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">KNN</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">createDataSet</span><span class="params">(self)</span>:</span></div><div class="line">        group = array([[<span class="number">3</span>,<span class="number">104</span>],[<span class="number">2</span>,<span class="number">100</span>],[<span class="number">1</span>,<span class="number">81</span>],[<span class="number">101</span>,<span class="number">10</span>],</div><div class="line">                       [<span class="number">99</span>,<span class="number">5</span>],[<span class="number">98</span>,<span class="number">2</span>]])</div><div class="line">        labels = [<span class="string">'Love'</span>,<span class="string">'Love'</span>,<span class="string">'Love'</span>,<span class="string">'Action'</span>,<span class="string">'Action'</span>,<span class="string">'Action'</span>]</div><div class="line">        <span class="keyword">return</span> group,labels</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">knnClassify</span><span class="params">(self,testX,trainX,labels,K)</span>:</span></div><div class="line">        [N,M]=trainX.shape <span class="comment">#what mean? return the shape for trainX matrix</span></div><div class="line">        <span class="comment"># tile for array and repeat for matrix in Python</span></div><div class="line">        difference = tile(testX,(N,<span class="number">1</span>)) - trainX</div><div class="line">        <span class="comment"># take pow(difference,2) like C Language</span></div><div class="line">        difference = difference ** <span class="number">2</span> </div><div class="line">        <span class="comment"># take the sum of differnce from all dimensions</span></div><div class="line">        distance   = difference.sum(<span class="number">1</span>)</div><div class="line">        distance   = distance ** <span class="number">0.5</span></div><div class="line">        <span class="comment"># sort the distance using asc and return </span></div><div class="line">        <span class="comment"># the index order as result not the value</span></div><div class="line">        sortdiffidx= distance.argsort()</div><div class="line">       </div><div class="line">        vote = {} <span class="comment"># create a dictionary</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(K):</div><div class="line">            voteLabel = labels[sortdiffidx[i]]</div><div class="line">            <span class="comment"># get(voteLable,0):if dictionary 'vote' exist key </span></div><div class="line">            <span class="comment"># 'voteLable',return vote[voteLabel];else return 0</span></div><div class="line">            vote[voteLabel] = vote.get(voteLabel,<span class="number">0</span>)+<span class="number">1</span></div><div class="line">         </div><div class="line">        <span class="comment"># lambda x:x[1] can be substituted by operator.itemgetter(1)</span></div><div class="line">        sortedVote = sorted(vote.iteritems(),key = <span class="keyword">lambda</span> x:x[<span class="number">1</span>], </div><div class="line">                            reverse = <span class="keyword">True</span>)</div><div class="line">        <span class="keyword">return</span> sortedVote[<span class="number">0</span>][<span class="number">0</span>]</div><div class="line">        </div><div class="line">k = KNN()</div><div class="line">group,labels = k.createDataSet()</div><div class="line">cls = k.knnClassify([<span class="number">18</span>,<span class="number">90</span>],group,labels,<span class="number">3</span>)</div><div class="line"><span class="keyword">print</span> cls</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>代码也就不解释了，也比较简单。主要问题在于Python的一些函数不熟悉，尤其是矩阵操作。不过后续会慢慢习惯的。</p>
+</blockquote>
+<hr>
+<h4 id="关于该算法的一些问题">关于该算法的一些问题</h4>
+<hr>
+<h5 id="归一化问题">归一化问题</h5>
+<blockquote>
+<p>有些特征值因为本身的缘故，导致其对距离 计算结果的影响比较大，此时要将所有的特征值归一化，这样保证不同特征值在计算距离时的影响是等价的。</p>
+</blockquote>
+<h5 id="训练数据与测试数据">训练数据与测试数据</h5>
+<blockquote>
+<p>通常将90%的数据作为训练数据，也就是作为样本数据，10%的数据作为测试数据，测试分类器的正确率。PS:感觉这个算法不算高明啊，不能持续学习。</p>
+</blockquote>
+<h5 id="K-近邻算法的缺陷">K-近邻算法的缺陷</h5>
+<blockquote>
+<ul>
+<li>必须保存全部数据集，如果训练数据集很大，则会耗费很多空间。</li>
+<li>由于必须对每个数据值计算距离，因此会很耗时间。 PS:可用KD树优化。</li>
+<li>无法给出任何数据的基础结构信息，无法知道平均实例样本和典型实例样本有什么特征。</li>
+<li>K越小容易过拟合，K越大容易降低分类精度（极限情况，K=1和K=样本的数量）。</li>
+<li>是Memory-Base ML Algorithm。</li>
+</ul>
+</blockquote>
+<hr>
+<h4 id="参考材料">参考材料</h4>
+<hr>
+<blockquote>
+<ul>
+<li><a href="http://book.douban.com/subject/24703171/" target="_blank" rel="external">机器学习实战</a></li>
+<li><a href="http://blog.csdn.net/abcjennifer/article/details/19757987" target="_blank" rel="external">K近邻分类算法实现 In Python</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/11/06/python-login-campus-network-advanced-strengthen/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python模拟登录校园网[再进阶]</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="machine-learning-k-algorithm" data-title="Machine Learning 之 K-近邻算法(1)" data-url="http://chyoo.me/2014/12/12/machine-learning-k-algorithm/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 chyoo
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

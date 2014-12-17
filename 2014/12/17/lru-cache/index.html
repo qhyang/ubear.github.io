@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LRU Cache | chyoo&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是到目前为止做的最复杂的一题，题见此处。一方面是对于Java的高级数据结构不清数，只是知道有Map和Set这样的数据结构，没有具体应用过。另一方面，这题涉及到HashMap和双链表的操作，需要对其原理有深入了解，才能做出来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LRU Cache">
+<meta property="og:url" content="http://chyoo.me/2014/12/17/lru-cache/">
+<meta property="og:site_name" content="chyoo's blog">
+<meta property="og:description" content="这是到目前为止做的最复杂的一题，题见此处。一方面是对于Java的高级数据结构不清数，只是知道有Map和Set这样的数据结构，没有具体应用过。另一方面，这题涉及到HashMap和双链表的操作，需要对其原理有深入了解，才能做出来。">
+<meta property="og:image" content="http://7q5cly.com1.z0.glb.clouddn.com/bloglru01.png">
+<meta property="og:image" content="http://7q5cly.com1.z0.glb.clouddn.com/bloglru02.png">
+<meta property="og:image" content="http://7q5cly.com1.z0.glb.clouddn.com/bloglru03.png">
+<meta property="og:image" content="http://7q5cly.com1.z0.glb.clouddn.com/bloglru04.png">
+<meta property="og:image" content="http://7q5cly.com1.z0.glb.clouddn.com/bloglru05.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LRU Cache">
+<meta name="twitter:description" content="这是到目前为止做的最复杂的一题，题见此处。一方面是对于Java的高级数据结构不清数，只是知道有Map和Set这样的数据结构，没有具体应用过。另一方面，这题涉及到HashMap和双链表的操作，需要对其原理有深入了解，才能做出来。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="chyoo&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://chyoo.qiniudn.com/blogmyGirl.jpg">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">chyoo</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Time goes by but I can not find you.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/DS/" style="font-size: 10.00px;">DS</a><a href="/tags/K/" style="font-size: 10.00px;">K</a><a href="/tags/LRU-Cache/" style="font-size: 10.00px;">LRU Cache</a><a href="/tags/Machine-Learn/" style="font-size: 10.00px;">Machine Learn</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/campus-network/" style="font-size: 10.00px;">campus network</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hexo/" style="font-size: 10.00px;">hexo</a><a href="/tags/java/" style="font-size: 13.33px;">java</a><a href="/tags/key/" style="font-size: 10.00px;">key</a><a href="/tags/leetcode/" style="font-size: 16.67px;">leetcode</a><a href="/tags/login/" style="font-size: 16.67px;">login</a><a href="/tags/picture/" style="font-size: 10.00px;">picture</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/ssh/" style="font-size: 10.00px;">ssh</a><a href="/tags/thinking/" style="font-size: 10.00px;">thinking</a><a href="/tags/ubuntu-14-04/" style="font-size: 10.00px;">ubuntu 14.04</a><a href="/tags/博客/" style="font-size: 10.00px;">博客</a><a href="/tags/思考/" style="font-size: 10.00px;">思考</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					A graduate student in Beijing Institute of  Technology.
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://chyoo.qiniudn.com/blogmyGirl.jpg">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">chyoo</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Time goes by but I can not find you.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-lru-cache" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/17/lru-cache/" class="article-date">
+  	<time datetime="2014-12-17T10:46:04.000Z" itemprop="datePublished">12月 17 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LRU-Cache/">LRU Cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LRU Cache
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这是到目前为止做的最复杂的一题，题见<a href="https://oj.leetcode.com/problems/lru-cache/" target="_blank" rel="external">此处</a>。一方面是对于Java的高级数据结构不清数，只是知道有Map和Set这样的数据结构，没有具体应用过。另一方面，这题涉及到HashMap和双链表的操作，需要对其原理有深入了解，才能做出来。</p>
+</blockquote>
+<a id="more"></a>
+
+
+<blockquote>
+<p>在开始做之前，我在网上查到的资料：</p>
+<ul>
+<li><a href="http://blog.csdn.net/zhangerqing/article/details/8193118" target="_blank" rel="external">Java之美[从菜鸟到高手演变]之HashMap、HashTable</a></li>
+<li><a href="http://www.cnblogs.com/Bob-FD/archive/2013/04/23/3038749.html" target="_blank" rel="external">LRU cache实现</a></li>
+<li><a href="http://blog.csdn.net/hexinuaa/article/details/6630384" target="_blank" rel="external"> 如何设计一个LRU Cache？</a></li>
+<li><a href="http://zhangshixi.iteye.com/blog/673789" target="_blank" rel="external">深入Java集合学习系列：LinkedHashMap的实现原理</a></li>
+<li><a href="http://zhangshixi.iteye.com/blog/672697" target="_blank" rel="external">深入Java集合学习系列：HashMap的实现原理</a></li>
+<li><a href="http://www.ibm.com/developerworks/cn/java/j-lo-hash/?ca=drs-tp4608" target="_blank" rel="external">通过分析 JDK 源代码研究 Hash 存储机制</a></li>
+<li><a href="http://www.acmerblog.com/leetcode-lru-cache-lru-5745.html" target="_blank" rel="external">LeetCode-LRU Cache-LRU算法</a></li>
+<li><a href="http://hawstein.com/posts/lru-cache-impl.html" target="_blank" rel="external">如何用C++实现一个LRU Cache</a></li>
+</ul>
+</blockquote>
+<h4 id="按照数组的方式去思考">按照数组的方式去思考</h4>
+<hr>
+<blockquote>
+<p>先总结一下问题，再贴代码。首先，(key,value)作为一个元组，或者一个Entry，放在Cache中的。现在可以认为Cache中按顺序排列着一个个Entry（是为了给一个直观的印象，实际上HashMap的结构不是这样子的，后面再纠正）。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>当我们调用get(key)时，需要遍历Cache数组中的各个Entry，如果找到了对应的key，则返回对应的value。如果没有找到，则返回<code>-1</code>。此外，还需要将该Entry放在最开始的地方（可认为是数组的第一个）。因为这个Entry已经访问过了，所以它还可能继续被访问，于是将其放在开头。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>当我们调用set(key,value)时，先要遍历查一下对应key的Entry存在不存在。如果不存在，则这个set的(key,value)Entry将会被插入Cache。但是在插入之前，要检查Cache的容量是否够。如果不够，则将Cache数组尾部的那个Entry去掉，因为这个Entry已经长时间没有被使用了，才会被挤到Cache的末尾。最后就是将新的(key,value)插入到数组头部—-这个很可能很快就要被访问。如果已经存在了key对应的Entry，此时做的就是修改，完了之后也要将其移到Catche头部。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>按照数组的思路，看起来并不难实现，不过在时间复杂度上肯定不行。这个插入特别麻烦，每插入一个，还要移动后面的元素，很不方便。于是流逼的人们，将目光转移到双向链表上来了。</p>
+</blockquote>
+<h4 id="按照双向链表的想法去思考">按照双向链表的想法去思考</h4>
+<h2><img src="http://7q5cly.com1.z0.glb.clouddn.com/bloglru01.png" alt="双向链表示意图"></h2>
+<blockquote>
+<p>按照上面的图示，有个start和end指针分别指示双向链表的开头和结尾。这样在数据插入到开头和从结尾删除数据都很方便。但是尼玛怎么不用单项链表呢？实际上单项链表在结尾删除元素的时候不好用，end指针不能往后跳转。解决办法要么给end增加一个前指针，指示倒数第二个，要么就遍历链表一次吧。前一种操作复杂，后一种不满足时间复杂度。所以为了又方便又好用的搞定这个问题，大牛们都选择了双向链表这个东西。</p>
+</blockquote>
+<h4 id="按照HashMap的逻辑去思考">按照HashMap的逻辑去思考</h4>
+<hr>
+<blockquote>
+<p>实际上这个东西也是一种数据结构，这种结构糅合了散列、数组和链表等数据结构相关的东西。给个形象的图：</p>
+</blockquote>
+<p>  <img src="http://7q5cly.com1.z0.glb.clouddn.com/bloglru02.png" alt="HashMap结构"></p>
+<blockquote>
+<p>这个图应该很熟悉的，严老师那本数据结构书上就有。不过HashMap用的更高级，左边的数组，是用散列法求的。比如给定一个(key,value)，Java的做法是，<code>h = hash(key.hashCode()) i= indexFor(h,table.length)</code>。<code>indexFor</code>实际上就是一个优化的对左边数组长度求模的运算，最后得到的<code>i</code>就是该Entry在左边数组中的下标了。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>HashMap里面有两个重要的操作，get和put。先说一下<code>put(K key,V value)</code>操作。它先根据<code>key</code>计算出上面所述的 <code>i</code>，然后以<code>table[i]</code>为起点，遍历<code>table[i]</code>后面的链表。若是发现有key相等的，则修改原值为新值。如果没有的话，就直接在<code>table[i]</code>处增加新的节点。也就是说数组中存储的都是最后插入的元素。</p>
+</blockquote>
+<p><img src="http://7q5cly.com1.z0.glb.clouddn.com/bloglru03.png" alt="put操作的原理"></p>
+<blockquote>
+<p>C(key,value)经过hash计算之后，得到的正好是A、B所在的table[i]。经过遍历之后，发现没有key相同的，则需要新增。那么就将C存在table[i]中，<code>C.next = B</code>将后面的节点连起来。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><code>get</code>操作。这里面要涉及到HashMap与HashTable不同的一部分。HashMap允许key和value为null，但是HashTable不允许key和value为null。对于<code>get</code>操作，如果key为null,就要调用getForNullKey函数，实际上就是遍历table[0]和其后面的链表，如果找到key为null的项，则返回对应的value，如果没找到，直接返回null。如果key不为null，则要根据hash(key.hashCode)计算出对应的i,然后遍历tablep[i]链表，如果有key对应的值，则返回对应的value，没有则返回null。</p>
+</blockquote>
+<h4 id="再来思考LRU_Cache的问题">再来思考LRU Cache的问题</h4>
+<blockquote>
+<p>最开始我想的结构是这样的：</p>
+</blockquote>
+<p><img src="http://7q5cly.com1.z0.glb.clouddn.com/bloglru04.png" alt="错误的结构图"></p>
+<blockquote>
+<p>之所以会出现这样错误的理解，大部分原因在于对HashMap结构的不了解。HashMap已经成了一种数据结构，并且给出了操作接口（即get、put和remove等），我们知道其原理和使用方法就可以了，HashMap的作用在于对于给定的key能提供线性时间的访问，要是比较分散，没有冲突发生，访问时间是O(1)。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>要在HashMap的基础上构建双向链表，首先需要设计节点，双向列表的节点，也就是存在HashMap中的节点的数据结构。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="title">class</span> Entry{</div><div class="line">    <span class="title">int</span> key;</div><div class="line">    <span class="title">int</span> value;</div><div class="line">    <span class="title">Entry</span> prev;</div><div class="line">    <span class="title">Entry</span> next;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>接着按照LRU中的要求设计解决方案类中的数据域。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> LRUCache{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;<span class="comment">//LRU Cache的容量</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> currentSize;<span class="comment">//当前容量</span></div><div class="line">    <span class="keyword">private</span> HashMap&lt;Integer,Entry&gt; map;<span class="comment">//这个数据结构存储双向链表</span></div><div class="line">    <span class="keyword">private</span> Entry first;</div><div class="line">    <span class="keyword">private</span> Entry last; <span class="comment">//分别指向双向链表的开头和结尾</span></div><div class="line">    </div><div class="line">    <span class="comment">//构造函数</span></div><div class="line">    LRUCache(<span class="keyword">int</span> capacity){</div><div class="line">        <span class="keyword">this</span>.capacity = capacity;</div><div class="line">        currentSize   = <span class="number">0</span>;</div><div class="line">        map = <span class="keyword">new</span> HashMap&lt;Integer,Entry&gt;(capacity);</div><div class="line">        <span class="comment">//初始化的容量是capacity</span></div><div class="line">        <span class="comment">//注意Integer实际上是key的类型，用这个作为HashMap中的key，Entry是</span></div><div class="line">        <span class="comment">//HashMap中存储的节点类型</span></div><div class="line">    }</div><div class="line">    </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>再构造get方法：</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span>(<span class="keyword">int</span> key){</div><div class="line">    <span class="comment">//要求是，如果找到key则返回对应的value，并将其移到双向链表的最开始位置</span></div><div class="line">    <span class="comment">//如果没找到，则返回-1</span></div><div class="line">    <span class="comment">//此处不用考虑key为null的问题</span></div><div class="line">    Entry node = map.<span class="keyword">get</span>(key);</div><div class="line">    <span class="keyword">if</span>(node == <span class="keyword">null</span>) <span class="keyword">return</span> -<span class="number">1</span>;<span class="comment">//没有找到，则返回-1</span></div><div class="line">    moveToHead(node);<span class="comment">//在这里面引用一个自定义函数，将node移到最开始位置</span></div><div class="line">    <span class="keyword">return</span> node.<span class="keyword">value</span>;<span class="comment">//返回对应的值</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p><code>get</code>方法里面使用了个moveToHead的自定义方法，将node移动到双向链表的首部。因为<code>put</code>方法里面也使用了这个函数，故而将其放在最后实现。接着考虑<code>put</code>方法的实现。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span>(<span class="keyword">int</span> key,<span class="keyword">int</span> <span class="keyword">value</span>){</div><div class="line">    <span class="comment">//void的返回值</span></div><div class="line">    <span class="comment">//put方法的要求是：如果有对应的key则将值设置为value，并添加到首部</span></div><div class="line">    <span class="comment">//如果没有，直接创建新的Entry，此时要检查容量。</span></div><div class="line">    <span class="comment">//如果容量不够，则移除双向链表最后一项。最后将Entry放在双向链表首部</span></div><div class="line">    Entry node = map.<span class="keyword">get</span>(key);</div><div class="line">    <span class="keyword">if</span>(node == <span class="keyword">null</span>){<span class="comment">//即没有对应的值，要创建新的</span></div><div class="line">        <span class="keyword">if</span>(currentSize &gt;= capacity){</div><div class="line">            map.remove(last.key);<span class="comment">//此处必须在下面的方法之前，如果先调用removeLast</span></div><div class="line">            removeLast();   <span class="comment">//last的值就改变了，导致map.rempve的参数无法确定</span></div><div class="line">        <span class="comment">//removeLast()是一个自定义函数，移除双向链表中的最后一个，在后面给出实</span></div><div class="line">        } <span class="keyword">else</span></div><div class="line">          currentSize++;<span class="comment">//如果没满的话，则需要增加一个</span></div><div class="line">    }</div><div class="line">    node = <span class="keyword">new</span> Entry();<span class="comment">//创建一个新的</span></div><div class="line">    node.key = key;</div><div class="line">    node.<span class="keyword">value</span> = <span class="keyword">value</span>;</div><div class="line">    moveToHead(node);<span class="comment">//必须放在前面</span></div><div class="line">    map.put(key,node);<span class="comment">//可能会考虑如果已经有了对应的key，但是value不一样，</span></div><div class="line">    <span class="comment">//只需要修改value，再将其移到最开始啊。</span></div><div class="line">    <span class="comment">//为什么要新建一个，这种并不能覆盖全部可能啊。实际上全部答案就在map的put方法上</span></div><div class="line">    <span class="comment">//put方法会根据key，覆盖掉原来的</span></div><div class="line"> </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>我想关于<code>map.put(key,node)</code>能覆盖的解释并不清晰，还是用图来说话吧。</p>
+</blockquote>
+<hr>
+<p><img src="http://7q5cly.com1.z0.glb.clouddn.com/bloglru05.png" alt="Alt text"></p>
+<blockquote>
+<p>图里面实线表示的是HashMap的链接关系，虚线是Entry节点组成的双向链表之间的关系。上图A呢，假设其key与我们put函数里的key是相同的，照上面的代码，put方法实际上是覆盖掉A处。假设我们先用map.put方法，则A处的Entry被换成新值，并且next和prev域都被置成null。我们再调用moveToHead将其放在双向链表首部，就会出问题。原因是原来的Entry（没有被置换）的next和prev表示的链接关系被置换成null了，已经不存在了,moveToHead会出现问题。所以必须将moveToHead放在map.put的前面：先建立起双向链表的关系，并放在首部，这时候再覆盖掉并没问题。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>第二幅图说了key没有重复必须新建时的情况。假设key经过hash之后确定的位置在B处，是一个新位置， 无论是先moveToHead还是先map.put都没问题。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>再考虑上面的removeLast()函数的实现。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> void removeLast(){</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">last</span> != <span class="constant">null</span>){</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">last</span>.prev != <span class="constant">null</span>)</div><div class="line">          <span class="keyword">last</span>.prev.next = <span class="constant">null</span>;<span class="comment"> //断尾</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">          <span class="keyword">first</span> = <span class="constant">null</span><span class="comment">;//只有 一个容量的情况</span></div><div class="line">        <span class="keyword">last</span> = <span class="keyword">last</span>.prev<span class="comment">;//这行代码兼顾两个部分,如果first==null的话</span></div><div class="line">       <span class="comment"> //这儿的last也为null</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>moveToHead函数的实现。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">private void moveToHead(Entry node){</div><div class="line">    <span class="keyword">if</span>(<span class="variable">first =</span>= node) return;//再次访问到第一个时，直接返回，不用移动</div><div class="line">    <span class="keyword">if</span>(node.prev != <span class="constant">null</span>)</div><div class="line">       node.prev.<span class="variable">next =</span> node.next;</div><div class="line">    <span class="keyword">if</span>(node.next != <span class="constant">null</span>)</div><div class="line">       node.next.<span class="variable">prev =</span> node.prev;</div><div class="line">    <span class="keyword">if</span>(<span class="variable">node =</span>= last)</div><div class="line">      <span class="variable">last =</span> node.prev;//此时要更新一下last</div><div class="line">    <span class="keyword">if</span>(first != <span class="constant">null</span>){</div><div class="line">        //first 有所指向的情况下，不然最开始的时候first是为<span class="constant">null</span>的，</div><div class="line">        //在<span class="constant">null</span>上调用方法是不行的</div><div class="line">        first.<span class="variable">prev =</span>  node;</div><div class="line">        node.<span class="variable">next =</span> first;</div><div class="line">    }</div><div class="line">    <span class="variable">first =</span> node;//first为<span class="constant">null</span>的情况也包含进去了</div><div class="line">    node.<span class="variable">prev =</span> <span class="constant">null</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(<span class="variable">last =</span>= <span class="constant">null</span>)</div><div class="line">       <span class="variable">last =</span> first;//针对最开始的情况</div><div class="line">        </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h4 id="总结">总结</h4>
+<blockquote>
+<p>做题倒是没让我心力交瘁，写这个反而做到了。在一步步细致的分析中，我想到了之前写代码没有想到的问题，比如moveToHead必须放在map.put之前。我只能说这个代码真够范例的，很多东西都包含进去了，只有当你一步步分析考虑时，才会发现它的奇妙。我是在研究文章最开始给出的第二个链接里面的文章和代码之后按照本题的具体情况写出来的，不得不说那个代码我在移植过来时确实很多巧妙处没有想到。不过细致分析了之后，收获很大。不仅对HashMap的结构有了深入的了解，而且开始会使用这种类型了。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>实际上这题据说还可以用LinkedHashMap来解决，但是时间有限，留待以后探索吧，包括HashTable，HashSet等数据结构的原理，都要好好分析。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/12/14/why-write-a-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">为何要写博客</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="lru-cache" data-title="LRU Cache" data-url="http://chyoo.me/2014/12/17/lru-cache/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 chyoo
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
